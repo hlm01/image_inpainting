@@ -30,7 +30,7 @@ class CustomDataset(Dataset):
 
 if __name__ == "__main__":
     data = CustomDataset("images")
-    dataloader = DataLoader(data, batch_size=32, shuffle=True, pin_memory=True)
+    dataloader = DataLoader(data, batch_size=6, shuffle=True, pin_memory=True)
     import matplotlib.pyplot as plt
     import numpy as np
 

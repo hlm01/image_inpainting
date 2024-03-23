@@ -2,3 +2,9 @@ images/
 __pycache__/
 irregular_mask/
 mask/
+test/
+out/
+*.png
+*.bmp
+train_observe/
+*.pth

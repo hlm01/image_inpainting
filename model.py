@@ -155,11 +155,7 @@ class PartialConv(nn.Module):
         super().__init__()
         self.conv = nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding)
         self.mask_conv = nn.Conv2d(
-            in_channels, out_channels, kernel_size, stride, padding
-        )
-        self.mask_conv.weight = torch.nn.Parameter(
-            torch.ones_like(self.mask_conv.weight)
-        )
+            in_channels, out_channels, kernel_size, stride, padding)
         self.sum = kernel_size**2
         self.out_ch = out_channels
 
@@ -174,16 +170,3 @@ class PartialConv(nn.Module):
         output = torch.mul(output, scale)
 
         return x, out_mask
-
-
-model = Inpaint()
-
-model.to("cuda")
-
-
-with torch.cuda.amp.autocast():
-    out = model(
-        torch.ones(10, 3, 256, 256, dtype=torch.float16).to("cuda"),
-        torch.ones(10, 3, 256, 256, dtype=torch.float16).to("cuda"),
-    )
-    print(out.shape)
